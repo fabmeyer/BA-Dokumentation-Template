@@ -9,7 +9,7 @@
 
 % add unicode support and use german as language
 \usepackage[utf8]{inputenc}
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 
 % Use Helvetica as font
 \usepackage[scaled]{helvet}
@@ -55,6 +55,11 @@
 
 \usepackage[absolute]{textpos}
 
+% Custom packages
+\usepackage{wrapfig}
+\usepackage{courier}
+\usepackage{float}
+
 % Glossary, hyperref, babel, polyglossia, inputenc, fontenc must be loaded before this package if they are used
 \usepackage{glossaries}
 % Redefine the quote charachter as we are using ngerman
@@ -70,7 +75,7 @@
 	citestyle=apa,
 	sortlocale=de_DE
 	]{biblatex}
-\addbibresource{Referenzen.bib}
+\addbibresource{References.bib}
 \DeclareLanguageMapping{ngerman}{ngerman-apa}
 
 % Clickable Links to Websites and chapters
@@ -129,10 +134,8 @@
 
 \include{include/HSLU_Preamble}
 
-\pagenumbering{Roman}
-
 \begin{abstract}
-	% TODO Abstract schreiben =)
+
 \end{abstract}
 
 \tableofcontents
@@ -140,19 +143,19 @@
 \clearpage
 \pagenumbering{arabic}
 
-\include{include/Einleitung}
+\include{include/Introduction}
 
-\include{include/Stand_der_Technik}
+\include{include/Current_state}
 
-\include{include/Methode}
+\include{include/Methods}
 
-\include{include/Ideen_und_Konzepte}
+\include{include/Ideas_and_concepts}
 
-\include{include/Realisierung}
+\include{include/Realisation}
 
-\include{include/Evaluation_und_Validation}
+\include{include/Evaluation_and_validation}
 
-\include{include/Ausblick}
+\include{include/Outlook}
 
 \newpage
 

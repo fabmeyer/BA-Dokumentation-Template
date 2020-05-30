@@ -1,0 +1,77 @@
+\chapter{Realisation}
+% TODO Beschreibung der Umsetzung der definierten Ziele, einschliesslich der aufgetretenen Schwierigkeiten und Einschränkungen
+
+\section{Data collection}
+
+The first step in this project was to collect some data. Two pictures of fine art photography were already shown in the project description: An image by german photographer Andreas Gursky and one by Swiss artist Urs Wehrli. The main motivation behind data collection was to obtain images from different artists that each show a lot of different objects. This let us examine the performance of an object detection model applied to fine art photography, by using images that contain a lot of objects that optimally are also included in the COCO dataset.
+
+The COCO (Common Objects in COntext) dataset is among the most popular image datasets created for object recognition tasks. It was lanced by Microsoft in 2014 and the most recent version was published in 2017. It uses 80 different classes for object detection tasks that can be seen here:
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=350pt]
+	{img/coco-classes.png}}
+	\caption{\label{fig:input-image} All 80 classes from COCO dataset 2017}
+\end{figure}
+
+The COCO dataset not only contains bounding boxes and binary masks for object detection and segmentation, it also includes informations for keypoint estimation, panoptic segmentation and image captioning tasks.
+
+In the end, 42 different images from the four artists Urs Wehrli, Andreas Gursky, David LaChapelle and Jeff Wall has been gathered. Urs Wehrli, the swiss artist behind "Kunst aufräumen" was asked to give his permission to use his images for this project. Thankfully he gave permission to do so. The dataset has then been examined with different object segmentation models on Google Colab.
+
+Google Colab is a free to use infrastructure, powered by Google, that offers a zero-configuration Python and Jupyter environment. Running on Linux Ubuntu with the latest Nvidia GPUs this is a good option to get started with deep learning, as there are also a lot of notebooks about every single kind of neural network tasks available.
+
+\section{Model selection}
+
+With the gathered dataset, different object segmentation models from different frameworks have been tried out on the dataset.
+The tried out models were: Mask R-CNN, CenterNet, Detectron2 and ShapeMask. In general, Mask R-CNN outperformed the other models, when inference is run on the dataset. Detectron2 also delivered a good performance but it threw an error when running on many images in a loop on Google Colab.
+
+\section{Framework selection}
+
+At the same time different frameworks have been tested out. These were Tensorflow from Google, Detectron from Facebook and MMDetection, which is a part of the OpenMMLab project developed by Multimedia Laboratory by the Chinese University of Hong Kong. All these frameworks do at least contain one Mask R-CNN model. MMDetection has been chosen as the framework to develop the project in, because it worked out-of-the box when tried out on Google Colab. MMDetection has a vast number of models for computer vision tasks available and offers a high-level API. It is built on top of PyTorch (primarily developed by Facebook).
+
+\section{Choosing the programming language}
+
+Python
+
+\section{Creating the tidied up image}
+
+After the dataset has been collected, and the model and the framework has been chosen, the next step was to extract all single objects from the output of the model when running in inference mode on an image. Mask R-CNN model outputs for every input image a list with with each a list of bounding boxes, masks, confidence score and predicted class of all objects found in the image. This is per default limited to 100 objects per image. The confidence score was used to filter all objects to get the objects with the highest quality as predicted by the model. The binary mask of the found objects was then applied to the image, creating binary images of the object. An example can be seen here:
+
+\begin{figure}[H]
+	\center{\includegraphics[width=350pt]
+	{img/binary-mask.png}}
+	\caption{\label{fig:binary-mask} Sample binary mask image}
+\end{figure}
+
+With help of the binary masks, the background of the found object was coloured white whereas the foreground stayed as is. Subsequently the corresponding bounding boxes were taken to cut out the objects from the image. The last step is to create a grid with all the found objects. This was done with the help of Python's Matplotlib. The idea is to create a grid with the number of rows according to the number of classes and insert every object as a new column. The problem with using Matplotlib's. \texttt{plt.subplots} is that it creates a grid where every image has the same size. To circumvent this, a more complicated approach was taken, by creating a grid manually with the help of the width and the height of all the found objects. A sample input of a tidied up image together with its output can be seen here:
+
+\begin{figure}[H]
+    \centering
+    \subfloat{{\includegraphics[width=5cm]{img/sample-input.jpg} }}
+    \qquad
+    \subfloat{{\includegraphics[width=5cm]{img/sample-output.jpg} }}
+    \caption{\label{fig:sample-input-output} Sample input and output image}
+\end{figure}
+
+\section{Building the application}
+
+Hello
+
+\section{Deployment}
+
+Hello
+
+\section{Refining the model}
+
+Hello
+
+\section{Results}
+
+Hello
+
+\section{First section}
+
+This document is an example of \texttt{thebibliography} environment using 
+in bibliography management. Three items are cited: \textit{The \LaTeX\ Companion} 
+book \cite{latexcompanion}, the Einstein journal paper \cite{einstein}, and the 
+Donald Knuth's website \cite{knuthwebsite}. The \LaTeX\ related items are
+\cite{latexcompanion,knuthwebsite}.
