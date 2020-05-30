@@ -26,11 +26,11 @@ The tried out models were: Mask R-CNN, CenterNet, Detectron2 and ShapeMask. In g
 
 \section{Framework selection}
 
-At the same time different frameworks have been tested out. These were Tensorflow from Google, Detectron from Facebook and MMDetection, which is a part of the OpenMMLab project developed by Multimedia Laboratory by the Chinese University of Hong Kong. All these frameworks do at least contain one Mask R-CNN model. MMDetection has been chosen as the framework to develop the project in, because it worked out-of-the box when tried out on Google Colab. MMDetection has a vast number of models for computer vision tasks available and offers a high-level API. It is built on top of PyTorch (primarily developed by Facebook).
+At the same time different frameworks have been tested out. These were Tensorflow from Google, Detectron from Facebook and MMDetection, which is a part of the OpenMMLab project developed by Multimedia Laboratory by the Chinese University of Hong Kong. All these frameworks do at least contain one Mask R-CNN model. MMDetection has been chosen as the framework to develop the project in, because it worked out-of-the box when tried out on Google Colab. MMDetection has a vast number of state-of-the-art models for computer vision tasks available and offers a high-level API. It is built on top of PyTorch (primarily developed by Facebook) and delivers a good performance.
 
 \section{Choosing the programming language}
 
-Python
+Because most of the deep-learning frameworks are using Python and of its ease of use, Python has been used as the sole programming language to develop this project. Python does also offer a lot of visual computing libraries that were used to create the tidied up image.
 
 \section{Creating the tidied up image}
 
@@ -54,11 +54,13 @@ With help of the binary masks, the background of the found object was coloured w
 
 \section{Building the application}
 
-Hello
+After completing the tidied up image, the next step was to build an application that can load an image, run the model in inference mode and return the tidied up image from the input image. A difficulty was that MMDetection, like most deep learning frameworks, needs a Nvidia GPU to run even in inference mode. To solve this problem, a wrapper called SMD was used, that takes in MMDetection models and can run the inference on an arbitrary CPU. \cite{SMD}
+
+To convert the program into a full-blown web application, a framework, called Plotly-Dash has been used. Plotly-Dash is using Flask to create a webserver and is using HTML-, CSS- and JavaScript-technologies under the hood to create a running web application from a Python program. It offers out-of-the-box user interface (UI) components, that are useful to rapid prototype a web application. With the help of UI-elements like buttons and dropdown-lists, the user is given the possibility to upload and select images and models and to start the inference by himself.
 
 \section{Deployment}
 
-Hello
+To deploy the application, server space on the EnterpriseLab has been allocated. The web application can be accessed at: \url{http://bdaf20-iameyer.enterpriselab.ch}.
 
 \section{Refining the model}
 
@@ -67,11 +69,3 @@ Hello
 \section{Results}
 
 Hello
-
-\section{First section}
-
-This document is an example of \texttt{thebibliography} environment using 
-in bibliography management. Three items are cited: \textit{The \LaTeX\ Companion} 
-book \cite{latexcompanion}, the Einstein journal paper \cite{einstein}, and the 
-Donald Knuth's website \cite{knuthwebsite}. The \LaTeX\ related items are
-\cite{latexcompanion,knuthwebsite}.

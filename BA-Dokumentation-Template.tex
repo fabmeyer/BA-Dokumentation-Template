@@ -67,17 +67,6 @@
 % Define the usage of an acronym, Abbreviation (Abbr.), next usage: The Abbr. of ...
 \setacronymstyle{long-short}
 
-% Bibliography & citing
-\usepackage[
-	backend=biber,
-	style=apa,
-	bibstyle=apa,
-	citestyle=apa,
-	sortlocale=de_DE
-	]{biblatex}
-\addbibresource{References.bib}
-\DeclareLanguageMapping{ngerman}{ngerman-apa}
-
 % Clickable Links to Websites and chapters
 % From the documentation: "Make sure it comeslastof your loaded packages, to give it a fighting chance of not beingover-written, since its job is to redefine many LATEX commands"
 \usepackage{hyperref}
@@ -173,7 +162,7 @@
 
 \listofmyequations \pagebreak
 
-\printbibliography
+\include{include/Bibliography}
 
 \include{include/Anhang}
 
