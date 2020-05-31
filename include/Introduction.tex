@@ -5,7 +5,7 @@ Object detection is an important computer vision and machine learning task that 
 Uses of object detection technologies include applications in security measures for example images from surveillance cameras, search engines, object tracking or counting in traffic, autonomous driving cars, robotics in general and the field of medical- and bioinformatics.
 
 \section{Task description}
-The aim of this work is to develop a web-application that is built around an object-detection model. This web-application has to take in a picture, looks for objects in it and has to return a "tidied up" image with the objects found in it. The "tidied up" image is inspired by "Kunst aufräumen", a series of fine-art photographies by Swiss artist Urs Wehrli, that consists of two images, a "messy" one and a "tidy" one. One such an example picture is shown here:
+The aim of this work is to develop a web-application that is built around an object-detection model. This web-application has to take in a picture, looks for objects in it and has to return a "tidied up" image with the objects found in it. The "tidied up" image is inspired by "Kunst aufräumen", a series of fine-art photographies by Swiss artist Urs Wehrli, that consists of two images, a "messy" one and a "tidy" one. In the "tidy" image, similar objects are shown next to each other, a task that is analogue to classification in computer vision applications. One example picture from "Kunst aufräumen" is shown here:
 
 \begin{figure}[H]
 	\center{\includegraphics[width=\textwidth]
@@ -14,6 +14,7 @@ The aim of this work is to develop a web-application that is built around an obj
 \end{figure}
 
 In a further step, an existing object detection model has to be refined by retraining it on a dataset with images from artistic photography and the performance of the two models have to be examined.
+One important element in the research of object detection is computation of scores to evaluate the quality of the model. An additional tasks was to develop an own metric to evaluate the different models when applying them to data of artistic photography.
 
 \section{Why fine art photography?}
 Models for object detection are usually trained on datasets, containing pictures that show objects in a very clear manner. These images usually contain only a few objects and are shot in natural lighting with natural colours. Composition-wise they are simple as it is the goal to depict the object in a most clear way.

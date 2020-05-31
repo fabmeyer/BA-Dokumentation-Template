@@ -1,10 +1,19 @@
 \chapter{Ideas and concepts}
 
 \section{Basic idea}
-% TODO Beschreibung wie das Problem im Ansatz gelöst werden soll
 
-\section{A more precise research question}
+The basic idea of creating an application that takes in images and returns a repository of objects found in it is original to our best knowledge and leaves much room for interpretation and customization.
+
+\section{Alternative frameworks and models}
+
+As can be seen in the overview graphic of different object recognition tasks in figure \ref{fig:object-recognition} on page \pageref{fig:object-recognition}, there are multiple possibilities to detect objects in an image. As it gives a nicer output, an instance segmentation model was chosen over an object detection model. Another idea that came to our mind was to use of an object of the family of image captioning models. Image captioning models are capable of generating a text that describes the scene depicted in an input image. These use a CNN in a first step to analyse the image, combined with a generative network to generate a text from it afterwards. Image captioning would have been especially interesting when applied to fine art photography, because many of these pictures show messages that are loaded with irony or socio-critical or political messages.
+
+\section{Alternative technologies to develop the web application}
+
+There exist some different tools to create a web application with Python. The classic way to do this would have been to use Python as a backend programming language, that computes the logic of the application and to use a frontend programming language like JavaScript to develop the user interface. There is also a tool available that can take in a Jupyter notebook and turn it into a running web application, called Voilà. Voilà works with any Jupyter kernel and can also be used to develop an application from other languages than just Python.
 
 \section{Alternative research questions}
 
-\section{Alternative models}
+The most obvious research quesiton would have been: What happens if a model gets trained on images by artist X and gets tested on images by artist Y, that contain the equal classes of objects in it? It would have been interesting to find out, whether the model will learn the distinct style of the artist, like colours, contrast, camera angle, lighting and so on. Of course another model could have been trained on the corresponding images from artist Y and the two models could have been compared with each other and also with the base (pretrained) model. As this needs at least two images from different artists that contain the same objects in it, it was rejected. However with a suitable performance metric it would allow to make a concluding statement about object detection in fine art photography.
+
+Another, more humorous task would have been to create something new with the found objects in the image. For example a fruit bowl generator algorithm, that takes in an image, searches for objects of different class of fruits and places them into a bowl and returns the new "fine art"-image. This could be accomplished with just hard-coding the features needed, or even better, with a generative model. As this is a complete different topic this project idea was rejected.
