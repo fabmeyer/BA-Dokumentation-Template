@@ -3,7 +3,7 @@
 
 \section{A brief introduction into discrete two-dimensional convolution}
 
-The model that is used for this project is from the family of convolutional neural networks or CNNs. These are models that are especially useful to perform operations on digital images. CNNs contain at least one convolutional layer that computes a mathematical operation that is called discrete convolution. Discrete convolution operation has been proved useful when applied on digital images to detect structural features like edges and corners. When applying discrete convolution to an image (a two dimensional array of values), a filter with a given two dimensional kernel is used to perform convolution on the image. With the given kernel, a segment that has the same size as the kernel is taken from the input image and an elementwise multiplication between these two matrices is performed. The sum of the results gets written in the output (also called feature map). As most kernels are much smaller than the input image, this inevitable results in smaller feature maps than input images, especially after applying convolution to the same image multiple times. To solve this problem, one can add a padding (increase the image size by adding specific values). An example of a two dimensional convolution operation with padding is shown here:
+The model that is used for this project is from the family of convolutional neural networks or ConvNets or CNNs. These are models that are especially useful to perform operations on digital images. CNNs contain at least one convolutional layer that computes a mathematical operation that is called discrete convolution. Discrete convolution operation has been proved useful when applied on digital images to detect structural features like edges and corners. When applying discrete convolution to an image (a two dimensional array of values), a filter with a given two dimensional kernel is used to perform convolution on the image. With the given kernel, a segment that has the same size as the kernel is taken from the input image and an elementwise multiplication between these two matrices is performed. The sum of the results gets written in the output (also called feature map). As most kernels are much smaller than the input image, this inevitable results in smaller feature maps than input images, especially after applying convolution to the same image multiple times. To solve this problem, one can add a padding (increase the image size by adding specific values). An example of a two dimensional convolution operation with padding is shown here:
 
 \begin{figure}[H]
 	\center{\includegraphics[width=\textwidth]
@@ -65,12 +65,22 @@ With Mask R-CNN from 2017 (also by Ross Girshik et. al) it is possible to not on
 	\caption{\label{fig:maskrcnn2} An overview of Mask R-CNN}
 \end{figure}
 
-- About feature pyramid networks
-- About ResNet101 (backbone)
+\section{Feature pyramid network}
+\label{fpn}
+
+Mask R-CNN also implements a technique called feature network pyramid (FPN). As objects on images often have very different size compared to each other, it is important to have a model that is invariant to scaling of objects in a given input image. In short, an FPN generates an array of feature maps of a given input image in different sizes that are used as input for prediction. As with every step the feature map gets smaller due to pooling layers, information content increases due to convolution layers. This is called bottom-up pathway. To create a high resolution feature map containing all information content, a top-down pathway is used. With the help of lateral connections between these two pathways, it is possible to yield both exact predictions and fast computation time. The two pathways are shown here:
+
+\begin{figure}[H]
+	\center{\includegraphics[width=\textwidth]
+	{img/fpn.png}}
+	\caption{\label{fig:fpn} Feature pyramid network with its two pathways}
+\end{figure}
+
+FPN along with ResNet is used in Mask R-CNN as the backbone of the network.
 
 An overview over the different tasks and approaches and their models  in the field of object recognition can be seen here:
 
-\begin{figure}[!h]
+\begin{figure}[H]
 	\center{\includegraphics[width=\textwidth]
 	{img/object-recognition.png}}
 	\caption{\label{fig:object-recognition} Tasks and approaches in object recognition}
