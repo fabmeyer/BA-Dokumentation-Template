@@ -21,7 +21,7 @@ In sum, the performance of the pretrained on COCO-dataset Mask R-CNN model depen
 
 \subsection{Retrained on "Kunst aufräumen" data model}
 
-As explained in section \ref{refining-the-model} on page \pageref{refining-the-model}, an own model was created by retraining the out-of-the-box R-CNN model via images from "Kunst aufräumen" by Urs Wehrli. The first model, that got retrained was with the car photo. A model could get trained without use of much data augmentation. The reason, as it is my assumption, is that in the car photos, the car objects are just rotated in two different positions: 0° or 180°. Therefore it is not necessary to include random rotations in the training pipeline.
+As explained in section \ref{refining-the-model} on page \pageref{refining-the-model}, an own model was created by retraining the out-of-the-box R-CNN model via images from "Kunst aufräumen" by Urs Wehrli. The first model, that got retrained was with the car photo. A model could get trained without use of much data augmentation. The reason, as it is my assumption, is that in the car photos, the car objects are just rotated in two different positions: 0\si{\degree} or 180\si{\degree}. Therefore it is not necessary to include random rotations in the training pipeline.
 
 \begin{figure}[H]
 \begin{tabular}{cc}
@@ -57,6 +57,8 @@ Unfortunately there was no time left over to develop an own metric to examine an
 Retrospectively, the used toolchain emerged to be highly effective. Google Colab is a very powerful infrastracture, especially when one does not possess an own Nvidia GPU. To share and comment whole notebooks or single cells was a big plus.
 
 MMDetection turned out to be a fast, modular and powerful framework for computer vision projects. Very helpful was the ability to save checkpoints and to resume training at a later point of time. MMDetection received a lot of traction in the last years and is in a steady change, version 2.0.0 just got released in April 2020.
+
+Having only little prior experience with python, it was nevertheless possible to implement the entire project. Python has proven to be very powerful for working with images and processing images efficiently. This is mainly owed to powerful libraries, like numpy, open-cv or Python Image Library (PIL).
 
 Plotly-Dash was a joy to work with, as it lets the developer turn a Python program into a full-fledged web application very quickly with minimal overhead. As it is built upon JavaScript technologies (React), it is highly customizable too. There exists a lively community that is eager to help.
 
