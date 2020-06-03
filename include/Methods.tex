@@ -4,7 +4,7 @@
 
 In the beginning of the project, a project management plan had to be developed. The project management plan contains a timeline with all (then known) tasks and a list of all milestones. Trello together with a timeline add-on (Elegantt, a gant chart tool) was used as project management tool. The project management plan and all tasks and milestones can be reached via this link: \url{https://trello.com/b/srqnMstX/object-detection-in-fine-art-photography}. A picture, showing the full timeline is shown here:
 
- \begin{figure}
+ \begin{figure}[H]
 	\center{\includegraphics[width=\textwidth]
 	{img/project-management-plan.png}}
 	\caption{\label{fig:project-management-plan} Timeline view of the project management plan}
@@ -38,7 +38,7 @@ An extra task would have been to develop and compute an own metric for better ev
 
 To develop the project, three different code repositories have been created. A git repository containing different datasets: This repository was used for testing out different models and frameworks when applying inference on the images. When developing the tidied up images, it was used too. It can be reached here: \url{https://gitlab.enterpriselab.ch/iameyer/odifap}.
 Another git repository was created to develop the web application. It can be accessed here: \url{https://gitlab.enterpriselab.ch/iameyer/odifap-program}.
-The third git repository was created to serve all necessary files for retraining the models. This repository contains a config.py file for every model and a .json file, that contains the bounding boxes and masks used for retraining.
+The third git repository was created to serve all necessary files for retraining the models. This repository contains a config.py file for every model and a .json file, that contains the bounding boxes and masks used for retraining. This repository can be reached with this URL: \url{https://gitlab.enterpriselab.ch/iameyer/odifap-training}
 Large files, like .pth files (checkpoint files, that are generated during training process) were saved to Google drive with the help of a custom Python script, as these files can be larger than 100MB in size.
 
 \section{Testing}

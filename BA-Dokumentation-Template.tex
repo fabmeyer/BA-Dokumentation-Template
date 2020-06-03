@@ -60,7 +60,7 @@
 \usepackage{booktabs}
 \usepackage{siunitx}
 
-% Glossary, hyperref, babel, polyglossia, inputenc, fontenc must be loaded before this package if they are used
+% Glossary, ref, babel, polyglossia, inputenc, fontenc must be loaded before this package if they are used
 \usepackage{glossaries}
 % Redefine the quote charachter as we are using ngerman
 \GlsSetQuote{+}
@@ -69,6 +69,7 @@
 
 % Clickable Links to Websites and chapters
 % From the documentation: "Make sure it comeslastof your loaded packages, to give it a fighting chance of not beingover-written, since its job is to redefine many LATEX commands"
+\usepackage{url}
 \usepackage{hyperref}
 
 %%% COMMAND REBINDINGS %%%
@@ -120,12 +121,13 @@
 %%% DOCUMENT %%%
 
 \begin{document}
+\sloppy
 
 \include{include/HSLU_Preamble}
 
 \begin{abstract}
 
-Convolutional neural networks are a branch of deep learning models that are capable of recognising and locating objects. These models have undergone significant improvements in the recent years. However, these models are trained with standard data sets, containing of everyday photography. In this work, some of these models have been tested with images from fine art photography. Different models from different frameworks of types object detection and instance segmentation were evaluated on a newly created dataset, containing of 42 pictures from four different artists. ModeI Mask R-CNN and framework MMDetection have been chosen to work with. It was realised that the performance of the model depends to a great extent on the style of the respective artist. A web application was developed and deployed in order to detect, segment and classify objects in images and to display them in a grid. In a final step, a custom model was created by retraining it with images from fine art photography and its performance was compared to the out-of-the-box Mask R-CNN model.
+Convolutional neural networks are a branch of deep learning models that are capable of recognising and locating objects. These models have undergone significant improvements in the recent years. However, these models are trained with standard data sets, containing of everyday photography. In this work, some of these models have been tested with images from fine art photography. Different models from different frameworks of types object detection and instance segmentation were evaluated on a newly created dataset, containing of 42 pictures from four different artists. ModeI Mask R-CNN and framework MMDetection have been chosen to work with, as they showed the best performance and the best usability. It was realised that the performance of the model depends to a great extent on the style of the respective artist. A web application was developed in order to detect, segment and classify objects in images and to display them in a grid. The web application has been deployed on the EnterpriseLab and is publicly reachable. In a final step, a custom model was created by retraining it with images from fine art photography and its performance was compared to the out-of-the-box Mask R-CNN model.
 
 \end{abstract}
 

@@ -3,7 +3,7 @@
 
 \section{Data collection}
 
-The first step in this project was to collect some data. Two pictures of fine art photography were already shown in the project description: An image by german photographer Andreas Gursky and one by Swiss artist Urs Wehrli. The main motivation behind data collection was to obtain images from different artists that each show a lot of different objects. This lets examine the performance of an object detection model applied to fine art photography, by using images that contain a lot of objects that optimally are also included in the COCO dataset. The styles of these artists are very different, as Andreas Gursky, for example, uses a viewpoint from above and objects are shown rather small (because his images). David LaChapelle, on the other hand, shows objects (e.g. people) in a rather standardised size, but by combining objects that do not belong together in a usual scenario, he puts these objects into a new context.
+The first step in this project was to collect some data. Two pictures of fine art photography were already shown in the project description: An image by german photographer Andreas Gursky and one by Swiss artist Urs Wehrli. The main motivation behind data collection was to obtain images from different artists that each show a lot of different objects. This lets examine the performance of an object detection model applied to fine art photography, by using images that contain a lot of objects that optimally are also included in the COCO dataset.
 
 \subsection{COCO-dataset}
 
@@ -19,9 +19,20 @@ The COCO dataset not only contains bounding boxes and binary masks for object de
 
 \subsection{Collected dataset}
 
-In the end, 42 different images from the four artists Urs Wehrli, Andreas Gursky, David LaChapelle and Jeff Wall has been gathered. Urs Wehrli, the swiss artist behind "Kunst aufräumen" was asked to give his permission to use his images for this project. Thankfully he gave permission to do so. The dataset has then been examined with different object segmentation models on Google Colab.
+Urs Wehrli, the swiss artist behind "Kunst aufräumen" was asked to give his permission to use his images for this project. Thankfully he gave permission to do so. In total, a data set, containing of 42 different images from the four artists Urs Wehrli, Andreas Gursky, David LaChapelle and Jeff Wall has been gathered.  The styles of these artists differ highly, as Andreas Gursky, for example, uses a viewpoint from above and objects are shown rather small (because his images usually are very large in size). David LaChapelle, on the other hand, shows objects (e.g. people) in a rather standardised size, but by combining objects that do not belong together in a usual scenario, he puts these objects into a new context and uses massive postprocessing or digital manipulation to enhance his pictures. One sample picture from every artist is shown here:
 
-Google Colab is a free to use infrastructure, powered by Google, that offers a zero-configuration Python and Jupyter notebook environment. Running on Linux Ubuntu with the latest Nvidia GPUs, this is a good option to get started with deep learning, as there are a lot of notebooks about every single kind of neural network tasks available.
+\begin{figure}[H]
+\begin{tabular}{cc}
+ \includegraphics[width=0.5\textwidth]{ag_amazon.jpg} &   \includegraphics[width=0.5\textwidth]{dl_leonardodicapriounspoiled.jpg} \\
+ (a) Andreas Gursky & (b) David LaChapelle \\[6pt]
+ \includegraphics[width=0.5\textwidth]{jw_invisibleman.jpg} &   \includegraphics[width=0.5\textwidth]{ka_autos_tidy.jpg} \\
+(c) Jeff Wall & (d) Urs Wehrli \\[6pt]
+\end{tabular}
+\caption{Sample picture shown from each of the four chosen artists}
+\label{fig:epochs-output}
+\end{figure}
+
+This dataset has then been examined with different object segmentation models on Google Colab. Google Colab is a free to use infrastructure, powered by Google, that offers a zero-configuration Python and Jupyter notebook environment. Running on Linux Ubuntu with the latest Nvidia GPUs, this is a good option to get started with deep learning, as there are a lot of notebooks about every single kind of neural network tasks available.
 
 \section{Toolchain selection}
 
@@ -42,7 +53,7 @@ At the same time different frameworks have been tested out. These were Tensorflo
 
 \section{Programming language}
 
-Because most of the deep learning frameworks are using Python and also of its ease of use, Python has been used as the sole programming language to develop this project. In addition Python does offer a lot of visual computing libraries that were used to create the tidied up image.
+Because most of the deep learning frameworks are using Python, Google Colab is using Python and also of its ease of use, Python has been used as the sole programming language to develop this project. In addition Python does offer a lot of visual computing libraries that were used to create the tidied up image.
 
 \section{Creating the tidied up image}
 
@@ -94,7 +105,7 @@ To deploy the application, server space on the EnterpriseLab has been allocated.
 
 \section{A more precise research question}
 
-As Urs Wehrli luckily gave his confirmation to use his photos from the series "Kunst aufräumen", I decided to use these images for retraining one or more models. Each model gets trained on the tidy version of an image and gets tested on the messy version of it. Optimally, the model should find all objects that are visible in the messy image and classify them correctly. There are some difficulties though. Per example in some pictures are most objects hidden because they are obscured by other objects in the foreground, as can be seen in the following picture:
+As Urs Wehrli luckily gave his confirmation to use his photos from the series "Kunst aufräumen", I decided to use these images for retraining one or more models. Each model gets trained on the tidy version of an image and gets tested on the messy version of it. Optimally, the model should find all objects that are visible in the messy image and classify them correctly. There are some difficulties though. Per example in some pictures most objects are hidden because they are obscured by other objects in the foreground, as can be seen in the following picture:
 
  \begin{figure}[H]
 	\center{\includegraphics[width=\textwidth]
@@ -102,17 +113,17 @@ As Urs Wehrli luckily gave his confirmation to use his photos from the series "K
 	\caption{\label{fig:ka-fruechte-messy} Most of the objects on the image are obscured by other objects}
 \end{figure}
 
-Optimally, the output of the model should contain exactly the same objects which are shown in the tidy version. For some photographies in his series, Urs Wehrli does use a particular technique to sort objects further in the "tidy" image. Per example using the colour or the size of the found objects.
+Optimally, the output of the model should contain exactly the same objects which are shown in the tidy version. For some photographies in his series, Urs Wehrli does use a particular technique to sort objects to a further degree in the "tidy" image. Per example using the colour or the size of the found objects.
 
 \section{Data labelling}
 
 A dataset containing of three images from the series "Kunst aufräumen" by Urs Wehrli has been chosen to refine the model. As each of these three images contains a messy and a tidy version, it does make a good template to use the tidied up version as a training image and the messy version as a test image. To accomplish training with own images, one has to label these images first. When training an object segmentation model, it is necessary to train the classifier with images that contain masks in it.
 
-There are several tools that offer object masking with polygons or brushes. The chosen tool is named "RectLabel". A total of six images (three messy ones and three tidy ones) have been labelled in order to use for refining the model. During labelling, a .xml-file gets generated, that after completion can be converted into the COCO-format as a .json-file.
+There are several tools that offer object masking with polygons or brushes. The chosen tool is named RectLabel. A total of six images (three messy ones and three tidy ones) have been labelled in order to use for refining the model. During labelling, a .xml-file gets generated, that after completion can be converted into the COCO-format as a .json-file.
 
 \section{Refining the model}
 \label{refining-the-model}
 
 Google Colab was used again as the platform to retrain the model. With just three training images it is quite extreme to train a classifier. This reflected in the poor performance in the beginning of the retraining process. After deciding to retrain a single model for every picture pair ("messy" and "tidy" one), performance got better. For a task like this, when training with a small dataset, data-augmentation is crucial: It lets the model use the same image over and over again after applying different kind of transformations and distortions to it.
 
-When retraining with MMDetection, one has to adjust several things: A .json-file, containing all the classes, masks and bounding boxes in COCO-format. And a config.py-file that contains all the needed settings for the training process. During retraining, checkpoint-files get saved in a defined interval. These checkpoint-files can be used resume training on a later point of time. After one training cycle (between 1000 and 2000 epochs), the last checkpoint-file was taken and examined on the test-image (the "tidy" image)
+When retraining with MMDetection, one has to adjust several things: A .json-file, containing all the classes, masks and bounding boxes in COCO-format and a config.py-file that contains all the needed settings for the training process (shown in the appendix). During retraining, checkpoint-files get saved in a defined interval. These checkpoint-files can be used resume training on a later point of time. After one training cycle (between 1000 and 2000 epochs), the last checkpoint-file was taken and examined on the test-image (the "tidy" image).
