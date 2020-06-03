@@ -32,7 +32,7 @@ Urs Wehrli, the swiss artist behind "Kunst aufräumen" was asked to give his per
 \label{fig:epochs-output}
 \end{figure}
 
-This dataset has then been examined with different object segmentation models on Google Colab. Google Colab is a free to use infrastructure, powered by Google, that offers a zero-configuration Python and Jupyter notebook environment. Running on Linux Ubuntu with the latest Nvidia GPUs, this is a good option to get started with deep learning, as there are a lot of notebooks about every single kind of neural network tasks available.
+This dataset has been examined with different object segmentation models on Google Colab. Google Colab is a free to use infrastructure, powered by Google, that offers a zero-configuration Python and Jupyter notebook environment. Running on Linux Ubuntu with the latest Nvidia GPUs, this is a good option to get started with deep learning, as there are a lot of notebooks about every single kind of neural network tasks available.
 
 \section{Toolchain selection}
 
@@ -62,7 +62,7 @@ Because most of the deep learning frameworks are using Python, Google Colab is u
 After the dataset has been collected, and the model and the framework have been chosen, the next step was to extract all single objects from the output of the model when running in inference mode on an image. Mask R-CNN model outputs for every input image among other things a list with with each a list of bounding boxes, masks, confidence score and predicted class of all objects found in the image. These four results were saved in a list object. The output is per default limited to 100 objects per image. The confidence score was used to filter all objects to get the objects with the highest quality as predicted by the model. The binary mask of the found objects was then applied to the image, creating binary images of the object. An example can be seen here:
 
 \begin{figure}[H]
-	\center{\includegraphics[width=\textwidth]
+	\center{\includegraphics[width=0.75\textwidth]
 	{img/binary-mask.png}}
 	\caption{\label{fig:binary-mask} Sample binary mask image}
 \end{figure}

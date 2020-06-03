@@ -49,13 +49,24 @@ As one can easily see, there was a steady improvement up to about 4500 epochs. F
 \begin{figure}[H]
 \begin{tabular}{cc}
  \includegraphics[width=1\textwidth]{tidy-pretrained-cars.png} \\
- (a) pretrained on COCO-model output as "tidy" image \\[6pt]
+ (a) pretrained on COCO-model output as "tidy" image (21 objects got detected as "Car") \\[6pt]
  \includegraphics[width=1\textwidth]{tidy-retrained-cars.png} \\
- (b) retrained  model output as "tidy" image (all objects got detected as "Car")  \\[6pt]
+ (b) retrained  model output as "tidy" image (65 objects got detected as "Car")  \\[6pt]
 \end{tabular}
 \caption{Comparing the output as "tidied up" images when using the pretrained and the retrained model}
 \label{fig:compare-output}
 \end{figure}
+
+When using the retrained model on image material from the COCO-dataset, one can easily see that performance has decreased very significantly. The model has not only forgotten many previously known classes, but has also become too accustomed to the training data (called overfitting). To illustrate this, the output from both models on an input image with cars from the COCO-dataset is shown:
+
+\begin{figure}[H]
+    \centering
+    \subfloat{{\includegraphics[width=0.5\textwidth]{img/coco1-test-pretrained.png} }}
+    \subfloat{{\includegraphics[width=0.5\textwidth]{img/coco1-test-retrained.png} }}
+    \caption{\label{fig:sample-input-output} Testing the pretrained and the retrained model on a COCO-dataset image}
+\end{figure}
+
+Apparently the model has learned the angle from which the object is viewed and the size of the object.
 
 \section{Reviewing the web application}
 
@@ -63,7 +74,7 @@ The web application is able to fulfil the requirements and is able to solve the 
 
 \subsection{Weaknesses}
 
-The first thing that got noticed is the very long waiting time until inference is completed. For a large picture, with a lot objects shown, this can be as long as up to 18 seconds or more (using the "Leonard DiCaprio unspoiled" picture from David LaChapelle with a height of 1024px). For a much smaller picture with only few objects, inference time is still about 9 seconds (using the sample COCO-dataset picture from section \ref{why-fine-art} on page \pageref{why-fine-art}. To yield a decent user experience, calculation time should not exceed two seconds. By switching to a GPU-powered infrastructure, this lack of performance could possibly be solved very easily.
+The first thing that got noticed is the very long waiting time until inference is completed. For a large picture, with a lot objects shown, this can be as long as up to 18 seconds or more (using the "Leonard DiCaprio unspoiled" picture from David LaChapelle with a height of 1024px). For a much smaller picture with only few objects, inference time is still about 9 seconds (using the sample COCO-dataset picture from section \ref{ch:why-fine-art} on page \pageref{ch:why-fine-art}. To yield a decent user experience, calculation time should not exceed two seconds. By switching to a GPU-powered infrastructure, this lack of performance could possibly be solved very easily.
 
 \subsection{Known bugs}
 
@@ -87,11 +98,11 @@ Unluckily, to this day, most frameworks do not support operating on CPU in infer
 
 \section{Evaluation of used method}
 
-The used approach, to proceed to retraining, after the whole toolchain got finished, turned out to be the right decision. However not all milestones could be reached in the agreed point of time, as can be seen in the next section.
+The used approach, to proceed to retraining after the whole toolchain got finished, turned out to be the right decision. However not all milestones could be reached in the agreed point of time, as can be seen in the next section.
 
 \subsection{Evaluation of project management and project procedure}
 
-Due to several problems and bugs, the achievement of certain milestones was delayed for some time:
+Due to several project difficulties, the achievement of certain milestones was delayed for some time:
 
 \begin{table}[H]
 \begin{tabular}{@{}lll@{}}
@@ -109,3 +120,6 @@ Finish web application with new model & 2nd June 2020 & 3rd June 2020
 	
 \subsection{Project difficulties}
 
+Because MMDetection did not support inference via CPU before version 2.0.0, a detour through the wrapper SMD had to be made. To successfully integrate SMD into the application, some data structures had to be modified. This changes resulted in the workload of some working days.
+When uploading an image file to a Plotly-Dash application, data gets encoded with a base64-encoding. To find out how to decode this data back into an image object cost about another one or two working days.
+Retraining a model with MMDetection was not simple either. As there was only a very small training set, it was difficult to judge if the configuration was wrong or if the data set was just too small.
